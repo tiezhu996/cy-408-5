@@ -10,7 +10,7 @@ export function Contacts() {
   const [relation, setRelation] = useState('');
   useEffect(() => { void load(); }, [load]);
   const filtered = useMemo(() => contacts.filter((item) =>
-    (!keyword || item.name.includes(keyword) && item.company.includes(keyword)) &&
+    (!keyword || item.name.includes(keyword) || item.company.includes(keyword)) &&
     (!relation || item.relationType === relation)
   ), [contacts, keyword, relation]);
   return (

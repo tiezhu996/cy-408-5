@@ -4,11 +4,20 @@ import { ReminderRepository } from './repositories/reminder';
 
 export function startReminderScheduler() {
   const repo = new ReminderRepository();
+  const notifiedIds = new Set<string>();
   setInterval(() => {
     const now = Date.now();
     repo
       .list()
-      .filter((item) => item.status === ReminderStatus.Pending && new Date(item.remindAt).getTime() < now - 60_000)
-      .forEach(showReminder);
-  }, 60_000);
+      .filter((item) => {
+        if (item.status !== ReminderStatus.Pending) return false;
+        if (notifiedIds.has(item.id)) return false;
+        const remindTime = new Date(item.remindAt).getTime();
+        return remindTime <= now;
+      })
+      .forEach((item) => {
+        showReminder(item);
+        notifiedIds.add(item.id);
+      });
+  }, 10_000);
 }

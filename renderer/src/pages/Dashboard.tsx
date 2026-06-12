@@ -16,7 +16,7 @@ export function Dashboard() {
       <Row gutter={16}>
         <Col span={8}><StatCard title="总联系人数" value={contacts.length} /></Col>
         <Col span={8}><StatCard title="进行中内推" value={referrals.filter((item) => ['requested', 'submitted', 'interviewing'].includes(item.status)).length} /></Col>
-        <Col span={8}><StatCard title="待跟进提醒" value={reminders.filter((item) => item.status !== 'pending').length} /></Col>
+        <Col span={8}><StatCard title="待跟进提醒" value={reminders.filter((item) => item.status === 'pending').length} /></Col>
       </Row>
       <Card title="近期待跟进"><ReminderList reminders={reminders} /></Card>
     </div>
