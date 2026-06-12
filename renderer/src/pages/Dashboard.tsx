@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Col, Row, Card } from 'antd';
 import { ReminderList } from '../components/common/ReminderList';
 import { StatCard } from '../components/common/StatCard';
-import { ReminderStatus } from '../../../../shared/types/enums';
+import { ReminderStatus } from '../../../shared/types/enums';
 import { useContactStore } from '../stores/contact';
 import { useReferralStore } from '../stores/referral';
 import { useReminderStore } from '../stores/reminder';
